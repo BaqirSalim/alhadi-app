@@ -16,3 +16,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const dummyAnouncments = ["free food on Wednesday", "wear festive clothes for 13th Rajab", "eat more food to prevent cancer", "sign up for SAT prep", "Protest for Palestine in downtown houston on Jan 26th", "sign up for highschool fieldtrip on Feb 16th"];
