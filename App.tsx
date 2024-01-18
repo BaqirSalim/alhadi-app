@@ -25,4 +25,4 @@ const [dummyAnouncements, setDummyAnouncements] = useState ([
   {anouncement: "Protest for Palestine in downtown houston on Jan 26th", key: "5"},
   {anouncement: "sign up for highschool fieldtrip on Feb 16th", key: "6"},
   {anouncement: "make cards for teacher appreciation week", key: "7"},
-]) 
+]); 
