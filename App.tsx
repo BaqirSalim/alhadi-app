@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
@@ -17,12 +18,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const [dummyAnnouncements, setDummyAnnouncements] = useState ([
-  {announcement: "free food on Wednesday", key: "1"},
-  {announcement: "wear festive clothes for 13th Rajab", key: "2"},
-  {announcement: "eat more food to prevent cancer", key: "3"},
-  {announcement: "sign up for SAT prep", key: "4"},
-  {announcement: "Protest for Palestine in downtown houston on Jan 26th", key: "5"},
-  {announcement: "sign up for highschool fieldtrip on Feb 16th", key: "6"},
-  {announcement: "make cards for teacher appreciation week", key: "7"},
-]); 
+const [dummyAnnouncements, setDummyAnnouncements] = useState([
+  { announcement: "free food on Wednesday", key: "1" },
+  { announcement: "wear festive clothes for 13th Rajab", key: "2" },
+  { announcement: "eat more food to prevent cancer", key: "3" },
+  { announcement: "sign up for SAT prep", key: "4" },
+  {
+    announcement: "Protest for Palestine in downtown houston on Jan 26th",
+    key: "5",
+  },
+  { announcement: "sign up for highschool fieldtrip on Feb 16th", key: "6" },
+  { announcement: "make cards for teacher appreciation week", key: "7" },
+]);
