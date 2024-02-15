@@ -4,17 +4,15 @@ import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type ItemProps = {
-  content: string
+  announcement: string;
 };
 
-const Item = (props: ItemProps) => (
-  <Text style={styles.scrollItem}>
-    {props.content}
-  </Text>
-)
+const Item = ({ announcement }: ItemProps) => (
+  <Text style={styles.scrollItem}>{announcement}</Text>
+);
 
 export default function Announcements() {
-const [extra, setExtra] = useState<string>();
+  const [extra, setExtra] = useState<string>();
 
   const [dummyAnnouncements, setDummyAnnouncements] = useState([
     { announcement: "free food on Wednesday", key: "1" },
@@ -30,14 +28,14 @@ const [extra, setExtra] = useState<string>();
   ]);
 
   return (
-    <SafeAreaView>
+    <View>
       <Stack.Screen options={{ title: "Announcements" }} />
       <FlatList
-      data={dummyAnnouncements}
-      renderItem={Item}
-      extraData={extra}
+        data={dummyAnnouncements}
+        renderItem={({ item }) => <Item announcement={item.announcement} />}
+        extraData={extra}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
