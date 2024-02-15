@@ -3,7 +3,19 @@ import { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+type ItemProps = {
+  content: string
+};
+
+const Item = (props: ItemProps) => (
+  <Text style={styles.scrollItem}>
+    {props.content}
+  </Text>
+)
+
 export default function Announcements() {
+const [extra, setExtra] = useState<string>();
+
   const [dummyAnnouncements, setDummyAnnouncements] = useState([
     { announcement: "free food on Wednesday", key: "1" },
     { announcement: "wear festive clothes for 13th Rajab", key: "2" },
@@ -20,7 +32,11 @@ export default function Announcements() {
   return (
     <SafeAreaView>
       <Stack.Screen options={{ title: "Announcements" }} />
-      <Text>Announcements</Text>
+      <FlatList
+      data={dummyAnnouncements}
+      renderItem={Item}
+      extraData={extra}
+      />
     </SafeAreaView>
   );
 }
@@ -40,5 +56,13 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 16,
     fontWeight: "bold",
+  },
+  scrollItem: {
+    marginHorizontal: 10,
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: "pink",
+    fontSize: 24,
+    borderRadius: 15,
   },
 });
