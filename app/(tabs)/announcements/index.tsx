@@ -19,7 +19,10 @@ export default function Announcements() {
 
   return (
     <SafeAreaView>
-      <Stack.Screen options={{ title: "Announcements" }} />
+      <Stack.Screen options={{ title: "Announcements" ,
+    headerTitle: () => (
+      <SafeAreaView
+     )}} />
       <Text>Announcements</Text>
     </SafeAreaView>
   );
