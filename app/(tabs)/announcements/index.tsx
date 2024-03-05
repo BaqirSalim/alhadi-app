@@ -28,13 +28,29 @@ export default function Announcements() {
     { announcement: "make cards for teacher appreciation week", key: "7" },
   ]);
 
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-
-  }
   return (
+    <SafeAreaView>
+      <Stack.Screen options={{ title: "Announcements" ,
+    headerTitle: () => (
+      <SafeAreaView style={{flex:1,marginHorizontal:20}}>
+        <TextInput 
+        placeholder="Search"
+        clearButtonMode="always"
+        style={{
+          paddingHorizontal:20,
+          paddingVertical:10,
+          borderColor:"#ccc",
+          borderWidth: 1,
+          borderRadius: 8,
+          }}
+        autoCapitalize= "none"
+        autoCorrect={false}   
+        />
+      </SafeAreaView>
+     
+     )}} />
+      <Text>Announcements</Text>
+    </SafeAreaView>
     <View>
       <Stack.Screen options={{ title: "Announcements" }} />
       <FlatList
