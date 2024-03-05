@@ -49,9 +49,7 @@ export default function Announcements() {
       </SafeAreaView>
      
      )}} />
-      <Text>Announcements</Text>
-    </SafeAreaView>
-    <View>
+      <View>
       <Stack.Screen options={{ title: "Announcements" }} />
       <FlatList
         data={dummyAnnouncements}
@@ -59,6 +57,7 @@ export default function Announcements() {
         extraData={extra}
       />
     </View>
+    </SafeAreaView>
   );
 }
 
