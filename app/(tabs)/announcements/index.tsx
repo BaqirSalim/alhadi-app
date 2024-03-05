@@ -1,6 +1,7 @@
 import { Link, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Announcements() {
@@ -21,7 +22,22 @@ export default function Announcements() {
     <SafeAreaView>
       <Stack.Screen options={{ title: "Announcements" ,
     headerTitle: () => (
-      <SafeAreaView
+      <SafeAreaView style={{flex:1,marginHorizontal:20}}>
+        <TextInput 
+        placeholder="Search"
+        clearButtonMode="always"
+        style={{
+          paddingHorizontal:20,
+          paddingVertical:10,
+          borderColor:"#ccc",
+          borderWidth: 1,
+          borderRadius: 8,
+          }}
+        autoCapitalize= "none"
+        autoCorrect={false}   
+        />
+      </SafeAreaView>
+     
      )}} />
       <Text>Announcements</Text>
     </SafeAreaView>
