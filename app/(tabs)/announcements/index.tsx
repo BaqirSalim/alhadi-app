@@ -1,12 +1,17 @@
 import { Link, Stack } from "expo-router";
 import { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { Button, FlatList, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type ItemProps = {
   announcement: string;
 };
+
+type Announcement = {
+  announcement: string;
+  key: string;
+}
 
 const Item = ({ announcement }: ItemProps) => (
   <Text style={styles.scrollItem}>{announcement}</Text>
@@ -15,7 +20,7 @@ const Item = ({ announcement }: ItemProps) => (
 export default function Announcements() {
   const [extra, setExtra] = useState<string>();
 
-  const [dummyAnnouncements, setDummyAnnouncements] = useState([
+  const [dummyAnnouncements, setDummyAnnouncements] = useState<Announcement[]>([
     { announcement: "free food on Wednesday", key: "1" },
     { announcement: "wear festive clothes for 13th Rajab", key: "2" },
     { announcement: "eat more food to prevent cancer", key: "3" },
@@ -28,38 +33,57 @@ export default function Announcements() {
     { announcement: "make cards for teacher appreciation week", key: "7" },
   ]);
 
-  return (
-    <SafeAreaView>
-      <Stack.Screen options={{ title: "Announcements" ,
-    headerTitle: () => (
-      <SafeAreaView style={{flex:1,marginHorizontal:20}}>
-        <TextInput 
-        placeholder="Search"
-        clearButtonMode="always"
-        style={{
-          paddingHorizontal:20,
-          paddingVertical:10,
-          borderColor:"#ccc",
-          borderWidth: 1,
-          borderRadius: 8,
-          }}
-        autoCapitalize= "none"
-        autoCorrect={false}   
-        />
-      </SafeAreaView>
-     
-     )}} />
-      <View>
-      <Stack.Screen options={{ title: "Announcements" }} />
-      <FlatList
-        data={dummyAnnouncements}
-        renderItem={({ item }) => <Item announcement={item.announcement} />}
-        extraData={extra}
-      />
-    </View>
-    </SafeAreaView>
+const [search, setSearch] = useState<string>("");
+const [filteredAnnouncements, setFilteredAnnoucements] = useState<Announcement[]>([]);
+const [showFiltered, setShowFiltered] = useState<boolean>(false);
+
+const filterItems = (searchWord: string) => {
+  return dummyAnnouncements.filter((item) =>
+  item.announcement.toLowerCase().includes(searchWord.toLowerCase())
   );
 }
+
+const handleSearch = (searchWord: string) => {
+  setSearch(searchWord);
+  const filteredItems = filterItems(searchWord);
+  setFilteredAnnoucements(filteredItems);
+  setShowFiltered(true);
+  if (searchWord.length == 0) {
+    setShowFiltered(false);
+  }
+};
+let content = showFiltered ? filteredAnnouncements : dummyAnnouncements;
+
+return (
+  <View>
+    <View
+      style={[
+        {
+          flexDirection: "row",
+          justifyContent: "space-between",
+        },
+      ]}
+    >
+      <TextInput placeholder="Search" onChangeText={handleSearch} />
+    </View>
+    <ScrollView>
+      {content.map((item) => {
+        return (
+          <Text style={styles.scrollItem} key={item.key}>
+            {item.announcement}
+          </Text>
+        );
+      })}
+    </ScrollView>
+  </View>
+);
+}
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   itemContainer: {
