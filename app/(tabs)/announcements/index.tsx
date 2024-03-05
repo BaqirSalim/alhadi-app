@@ -18,6 +18,12 @@ export default function Announcements() {
     { announcement: "make cards for teacher appreciation week", key: "7" },
   ]);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+
+  }
   return (
     <SafeAreaView>
       <Stack.Screen options={{ title: "Announcements" ,
@@ -34,7 +40,10 @@ export default function Announcements() {
           borderRadius: 8,
           }}
         autoCapitalize= "none"
-        autoCorrect={false}   
+        autoCorrect={false}
+        value={searchQuery}
+        onChangeText={(query) => handleSearch(query)}
+
         />
       </SafeAreaView>
      
