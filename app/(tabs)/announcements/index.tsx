@@ -4,7 +4,17 @@ import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+type ItemProps = {
+  announcement: string;
+};
+
+const Item = ({ announcement }: ItemProps) => (
+  <Text style={styles.scrollItem}>{announcement}</Text>
+);
+
 export default function Announcements() {
+  const [extra, setExtra] = useState<string>();
+
   const [dummyAnnouncements, setDummyAnnouncements] = useState([
     { announcement: "free food on Wednesday", key: "1" },
     { announcement: "wear festive clothes for 13th Rajab", key: "2" },
@@ -25,31 +35,14 @@ export default function Announcements() {
 
   }
   return (
-    <SafeAreaView>
-      <Stack.Screen options={{ title: "Announcements" ,
-    headerTitle: () => (
-      <SafeAreaView style={{flex:1,marginHorizontal:20}}>
-        <TextInput 
-        placeholder="Search"
-        clearButtonMode="always"
-        style={{
-          paddingHorizontal:20,
-          paddingVertical:10,
-          borderColor:"#ccc",
-          borderWidth: 1,
-          borderRadius: 8,
-          }}
-        autoCapitalize= "none"
-        autoCorrect={false}
-        value={searchQuery}
-        onChangeText={(query) => handleSearch(query)}
-
-        />
-      </SafeAreaView>
-     
-     )}} />
-      <Text>Announcements</Text>
-    </SafeAreaView>
+    <View>
+      <Stack.Screen options={{ title: "Announcements" }} />
+      <FlatList
+        data={dummyAnnouncements}
+        renderItem={({ item }) => <Item announcement={item.announcement} />}
+        extraData={extra}
+      />
+    </View>
   );
 }
 
@@ -68,5 +61,13 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 16,
     fontWeight: "bold",
+  },
+  scrollItem: {
+    marginHorizontal: 10,
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: "pink",
+    fontSize: 24,
+    borderRadius: 15,
   },
 });

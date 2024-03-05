@@ -2,19 +2,12 @@ import { Tabs } from "expo-router";
 import { Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function AppLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
-      <Tabs.Screen
-        name="announcements"
-        options={{
-          tabBarLabel: "Announcements",
-          tabBarIcon: () => (
-            <MaterialIcons name="announcement" size={24} color="black" />
-          ),
-        }}
-      />
+      
       <Tabs.Screen
         name="calendar"
         options={{
@@ -24,6 +17,17 @@ export default function AppLayout() {
           ),
         }}
       />
+      
+      <Tabs.Screen
+        name="announcements"
+        options={{
+          tabBarLabel: "Announcements",
+          tabBarIcon: () => (
+            <FontAwesome name="bullhorn" size={24} color="black" />
+          ),
+        }}
+      />
+      
       <Tabs.Screen
         name="quran"
         options={{
